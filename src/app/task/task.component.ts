@@ -8,16 +8,19 @@ import { TaskStorageService } from '../service/task-storage.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './task.component.html',
-  styleUrl: './task.component.scss'
+  styleUrl: './task.component.scss',
 })
 export class TaskComponent {
   @Input()
-  task!: Task
+  task!: Task;
 
-  constructor(private storage: TaskStorageService) {
-  }
+  constructor(private storage: TaskStorageService) {}
 
   delete() {
-    this.storage.delete(this.task.id)
+    this.storage.delete(this.task.id);
+  }
+
+  save() {
+    this.storage.save(this.task.id);
   }
 }
