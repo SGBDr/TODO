@@ -71,10 +71,9 @@ export class TaskStorageService {
     this.taskEmitter.emit(this.tasks);
   }
 
-  save(description : string) {
-    for(let i=0; i<this.tasks.length;i++){
-      let tsk = this.tasks[2];
-    return tsk = description;
+  save(description : string , id : number) {
+    this.tasks = this.tasks.filter((t) => t.id !== id);
+    this.taskEmitter.emit(this.tasks[2]);
     }
   }
-}
+
