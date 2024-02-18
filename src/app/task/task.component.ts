@@ -1,18 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../model/task';
 import { TaskStorageService } from '../service/task-storage.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss',
 })
-export class TaskComponent {
+export class TaskComponent  implements OnInit{
   @Input()
   task!: Task;
+  description! : string;
+
+  ngOnInit(): void {
+      this.description = this.task.description;  // initialise desription
+  }
 
   constructor(private storage: TaskStorageService) {}
 
@@ -21,6 +27,8 @@ export class TaskComponent {
   }
 
   save() {
-    this.storage.save(this.task.id);
+    this.storage.save(this.description,this.task.id);
+    console.log(this.description);
   }
+  
 }

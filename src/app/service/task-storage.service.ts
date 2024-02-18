@@ -71,9 +71,21 @@ export class TaskStorageService {
     this.taskEmitter.emit(this.tasks);
   }
 
-  save(description : string , id : number) {
-    this.tasks = this.tasks.filter((t) => t.id !== id);
-    this.taskEmitter.emit(this.tasks[2]);
+  save(description : string , id : number) : void {
+      this.tasks = this.tasks.map((x) =>{  // calllback function  function(()=>{})
+        if(x.id === id){ console.log(2);
+            x.description = description;
+            console.log(description);
+        }  
+        return x;
+      }); 
+
+    //let te = this.tasks.filter((t) => t.id === id);
+    //et a = te[0];   // give back an array with one element
+   // a.description = description;  // go to the  taken alement an d modify the it 
+    //this.delete(id); // delete the taken element so as not to have the mody and taken element .here we use the id bcs at the tine t the id is for the taken element not the modify element
+    //this.tasks.push(a);  // üush th emodify element in array so as to see it 
+    this.taskEmitter.emit(this.tasks); // update the front end so as to see the mnodificationsa
     }
   }
 

@@ -1,6 +1,6 @@
 <div class="row">
     <h2 class="hl1"> {{ task.name }}</h2>
-    <input type="text" class="hl2" [value]="task.description">
+    <input type="text" class="hl2" [(ngModel)]="description">
     {{task.description}}
     <div class="char">
         <div>
