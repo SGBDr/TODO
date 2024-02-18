@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Task } from '../model/task';
 
@@ -5,6 +6,11 @@ import { Task } from '../model/task';
   providedIn: 'root',
 })
 export class TaskStorageService {
+  //url: string = "https://task-89503-default-rtdb.europe-west1.firebasedatabase.app/"
+
+  /**
+   * Ajout
+   */
   tasks: Task[] = [
     {
       id: 1,
@@ -59,7 +65,7 @@ export class TaskStorageService {
 
   taskEmitter = new EventEmitter();
 
-  constructor() {}
+  constructor(private http: HttpClient) {this.init()}
 
   getTasks(): Task[] {
     return this.tasks;
@@ -80,12 +86,18 @@ export class TaskStorageService {
         return x;
       }); 
 
-    //let te = this.tasks.filter((t) => t.id === id);
-    //et a = te[0];   // give back an array with one element
-   // a.description = description;  // go to the  taken alement an d modify the it 
-    //this.delete(id); // delete the taken element so as not to have the mody and taken element .here we use the id bcs at the tine t the id is for the taken element not the modify element
-    //this.tasks.push(a);  // üush th emodify element in array so as to see it 
+    /*let te = this.tasks.filter((t) => t.id === id);
+    a = te[0];   // give back an array with one element
+    a.description = description;  // go to the  taken alement an d modify the it 
+    this.delete(id); // delete the taken element so as not to have the mody and taken element .here we use the id bcs at the tine t the id is for the taken element not the modify element
+    this.tasks.push(a);  // üush th emodify element in array so as to see it */
     this.taskEmitter.emit(this.tasks); // update the front end so as to see the mnodificationsa
+    }
+
+    init(): void {
+      this.http.get(this.url).subscribe(e => console.log(e))
+      this.http.post(this.url + "tasks", this.tasks).subscribe(mes => console.log(mes))
+      console.log("okok")
     }
   }
 
