@@ -1,0 +1,12 @@
+
+
+<div class="container">
+    <h1>Add new Task</h1>
+    <input type="text" placeholder="name" [(ngModel)]="task.name">
+    <br>
+    <textarea name="description" placeholder="Description" [(ngModel)]="task.description" id="" cols="30" rows="10"></textarea>
+    <br>
+    <button class="button" (click)="add()">
+        ADD
+    </button>
+</div>

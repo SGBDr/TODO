@@ -1,5 +1,8 @@
 <div class="container">
-    <h1>ToDO App</h1>
+    <div class="top">
+        <h1>ToDO App</h1>
+        <button (click)="openAdd()">ADD TASK</button>
+    </div>
     <div class="tasks">
         <div *ngFor="let task of tasks">
             <app-task [task]="task"></app-task>
